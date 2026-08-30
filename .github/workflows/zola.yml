@@ -17,11 +17,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout
+      - name: Checkout site
+        uses: actions/checkout@v6.0.1
+
+      - name: Checkout content
         uses: actions/checkout@v6.0.1
         with:
-          submodules: true
-
+          repository: vinceTheProgrammer/blog_content
+          path: content
+          
       - name: Build Zola + upload Pages artifact
         uses: getzola/github-pages@066755243e69f508fd1a74739fbf1a65f656c790
         with:
