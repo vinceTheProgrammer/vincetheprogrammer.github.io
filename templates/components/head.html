@@ -60,3 +60,28 @@
     <meta name="description" content="{{ config.extra.site_description }}">
   {% endif %}
 {% endcomponent head.description_meta %}
+
+
+{% component head.opengraph_meta(config, page, section) %}      
+  {% if page and page.description %}
+    <meta property="og:description" content="{{ page.description }}">
+  {% elif page and page.summary %}
+    <meta property="og:description" content="{{ page.summary | striptags }}">
+  {% elif section and section.description %}
+    <meta property="og:description" content="{{ section.description }}">
+  {% elif config.description %}
+    <meta property="og:description" content="{{ config.description }}">
+  {% elif config.extra.site_description %}
+    <meta property="og:description" content="{{ config.extra.site_description }}">
+  {% endif %}
+
+  {% if page and page.title %}
+    <meta property="og:title" content="{{ page.title }}">
+  {% elif section and section.title %}
+    <meta property="og:title" content="{{ section.title }}">
+  {% endif %}
+
+  {% if page and page.extra and page.extra.image %}
+    <meta property="og:image" content="{{ get_url(path=page.path ~ page.extra.image, absolute=true) }}">
+  {% endif %}
+{% endcomponent head.opengraph_meta %}
