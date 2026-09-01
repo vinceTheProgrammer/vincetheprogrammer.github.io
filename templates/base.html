@@ -17,6 +17,7 @@
   <meta name="generator" content="{{ config.extra.generator | default(value='Zola') }}">
 
   {{<head.description_meta config={config} page={page_value} section={section_value} />}}
+  {{<head.opengraph_meta config={config} page={page_value} section={section_value} />}}
 
   <title>
     {% block title %}
